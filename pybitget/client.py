@@ -357,7 +357,7 @@ class Client(object):
         params = {}
         if productType:
             params['productType'] = productType
-            return self._request_with_params(GET, MIX_ACCOUNT_V1_URL + '/accounts', params)
+            return self._request_with_params(GET, MIX_ACCOUNT_V2_URL + '/accounts', params)
         else:
             logger.error("pls check args")
             return False
@@ -503,7 +503,7 @@ class Client(object):
             params["productType"] = productType
             if marginCoin is not None:
                 params["marginCoin"] = marginCoin
-            return self._request_with_params(GET, MIX_POSITION_V1_URL + '/allPosition', params)
+            return self._request_with_params(GET, MIX_POSITION_V2_URL + '/all-position', params)
         else:
             logger.error("pls check args")
             return False
@@ -852,7 +852,7 @@ class Client(object):
                 params["endTime"] = endTime
             if lastEndId is not None:
                 params["lastEndId"] = lastEndId
-            return self._request_with_params(GET, MIX_ORDER_V1_URL + '/allFills', params)
+            return self._request_with_params(GET, MIX_ORDER_V2_URL + '/fill-history', params)
         else:
             logger.error("pls check args")
             return False
@@ -1635,6 +1635,9 @@ class Client(object):
         """
         return self._request_without_params(GET, SPOT_ACCOUNT_V1_URL + '/getInfo')
 
+    def spot_get_account_info(self):
+        return self._request_without_params(GET, SPOT_ACCOUNT_V2_URL + '/info')
+
     def spot_get_account_assets(self, coin=None):
         """
         Get Account Assets: https://bitgetlimited.github.io/apidoc/en/spot/#get-account-assets
@@ -1700,7 +1703,7 @@ class Client(object):
         params["limit"] = limit
         return self._request_with_params(POST, SPOT_ACCOUNT_V1_URL + '/bills', params)
 
-    def spot_get_transfer_list(self, coinId='', fromType='', after='', before='', limit=100):
+    def spot_get_transfer_list(self, coin='', fromType='', toType='', startTime='', endTime='', limit=100):
         """
         Get Transfer List: https://bitgetlimited.github.io/apidoc/en/spot/#get-transfer-list
 
@@ -1714,17 +1717,19 @@ class Client(object):
         """
         params = {}
 
-        if coinId:
-            params["coinId"] = coinId
+        if coin:
+            params["coin"] = coin
         if fromType:
             params["fromType"] = fromType
-        if after:
-            params["after"] = after
-        if before:
-            params["before"] = before
+        elif toType:
+            params["toType"] = toType
+        if startTime:
+            params["startTime"] = after
+        if endTime:
+            params["endTime"] = before
 
         params["limit"] = limit
-        return self._request_with_params(GET, SPOT_ACCOUNT_V1_URL + '/transferRecords', params)
+        return self._request_with_params(GET, SPOT_ACCOUNT_V2_URL + '/transferRecords', params)
 
     """ Spot-TradeApi"""
 
@@ -2228,3 +2233,4 @@ class Client(object):
         else:
             logger.error("pls check args")
             return False
+

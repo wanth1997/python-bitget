@@ -29,6 +29,7 @@ CONTRACT_WS_URL = 'wss://ws.bitget.com/mix/v1/stream'
 SPOT_PUBLIC_V1_URL = '/api/spot/v1/public'
 SPOT_MARKET_V1_URL = '/api/spot/v1/market'
 SPOT_ACCOUNT_V1_URL = '/api/spot/v1/account'
+SPOT_ACCOUNT_V2_URL = '/api/v2/spot/account'
 SPOT_ORDER_V1_URL = '/api/spot/v1/trade'
 SPOT_WALLET_V1_URL = '/api/spot/v1/wallet'
 SPOT_PLAN_V1_URL = '/api/spot/v1/plan'
@@ -39,8 +40,11 @@ SPOT_PLAN_V1_URL = '/api/spot/v1/plan'
 
 MIX_MARKET_V1_URL = '/api/mix/v1/market'
 MIX_ACCOUNT_V1_URL = '/api/mix/v1/account'
+MIX_ACCOUNT_V2_URL = '/api/v2/mix/account'
 MIX_POSITION_V1_URL = '/api/mix/v1/position'
+MIX_POSITION_V2_URL = '/api/v2/mix/position'
 MIX_ORDER_V1_URL = '/api/mix/v1/order'
+MIX_ORDER_V2_URL = '/api/v2/mix/order'
 MIX_PLAN_V1_URL = '/api/mix/v1/plan'
 MIX_TRACE_V1_URL = '/api/mix/v1/trace'
 
@@ -131,3 +135,4 @@ WS_CHANNEL_INSTID = "default"
 ORDER_STATUS = "state"
 ORDER_TYPE_NAME = "orderType"
 STOP_PRICE_FIELD = "triggerPrice"
+
