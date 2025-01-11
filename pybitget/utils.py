@@ -5,8 +5,13 @@ from .enums import *
 import string
 import random
 
+
 def sign(message, secret_key):
-    mac = hmac.new(bytes(secret_key, encoding='utf8'), bytes(message, encoding='utf-8'), digestmod='sha256')
+    mac = hmac.new(
+        bytes(secret_key, encoding="utf8"),
+        bytes(message, encoding="utf-8"),
+        digestmod="sha256",
+    )
     d = mac.digest()
     return base64.b64encode(d)
 
@@ -27,9 +32,9 @@ def get_header(api_key, a_sign, timestamp, passphrase):
 
 
 def parse_params_to_str(params):
-    url = '?'
+    url = "?"
     for key, value in params.items():
-        url = url + str(key) + '=' + str(value) + '&'
+        url = url + str(key) + "=" + str(value) + "&"
 
     return url[0:-1]
 
@@ -39,19 +44,23 @@ def get_timestamp():
 
 
 def signature(timestamp, method, request_path, body, secret_key):
-    if str(body) == '{}' or str(body) == 'None':
-        body = ''
+    if str(body) == "{}" or str(body) == "None":
+        body = ""
     message = str(timestamp) + str.upper(method) + request_path + str(body)
-    mac = hmac.new(bytes(secret_key, encoding='utf8'), bytes(message, encoding='utf-8'), digestmod='sha256')
+    mac = hmac.new(
+        bytes(secret_key, encoding="utf8"),
+        bytes(message, encoding="utf-8"),
+        digestmod="sha256",
+    )
     d = mac.digest()
     return base64.b64encode(d)
 
 
 def id_random(size=3, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+    return "".join(random.choice(chars) for _ in range(size))
 
 
 def random_string(keyword=None, length=15):
     if keyword is None:
-        keyword = 'Cuongitl'
+        keyword = "Cuongitl"
     return "{}_{}".format(keyword, id_random(length).lower())

@@ -19,7 +19,15 @@ def place_order(orderType):
     size = "0.01"
     side = NEW_BUY
     price = 15000
-    s = iClient.mix_place_order(symbol, marginCoin, size, side, orderType, price=price, clientOrderId=random_string("Cuongitl"))
+    s = iClient.mix_place_order(
+        symbol,
+        marginCoin,
+        size,
+        side,
+        orderType,
+        price=price,
+        clientOrderId=random_string("Cuongitl"),
+    )
     logger.debug(s)
     """
     # {'code': '00000', 'msg': 'success', 'requestTime': 1674875751521, 'data': {'clientOid': 'Cuongitl_g9dl0artxawgpqa', 'orderId': '1003067092170850306'}}
@@ -27,12 +35,14 @@ def place_order(orderType):
 
 
 def place_tp():
-    """ create take-profit """
+    """create take-profit"""
     planType = "pos_profit"
     triggerPrice = "25000.5"
     triggerType = "fill_price"  # market_price
     holdSide = PS_BUY
-    s = iClient.mix_place_PositionsTPSL(symbol, marginCoin, planType, triggerPrice, triggerType, holdSide=holdSide)
+    s = iClient.mix_place_PositionsTPSL(
+        symbol, marginCoin, planType, triggerPrice, triggerType, holdSide=holdSide
+    )
     logger.debug(s)
     """
     # Place TP:
@@ -41,12 +51,14 @@ def place_tp():
 
 
 def place_sl():
-    """ create stop-loss """
+    """create stop-loss"""
     planType = "pos_loss"
     triggerPrice = "13000.5"
     triggerType = "fill_price"  # market_price
     holdSide = PS_BUY
-    s = iClient.mix_place_PositionsTPSL(symbol, marginCoin, planType, triggerPrice, triggerType, holdSide=holdSide)
+    s = iClient.mix_place_PositionsTPSL(
+        symbol, marginCoin, planType, triggerPrice, triggerType, holdSide=holdSide
+    )
     logger.debug(s)
     """
     # Place SL:
